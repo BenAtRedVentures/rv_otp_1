@@ -2,8 +2,12 @@ defmodule Gram.Board do
   alias Gram.Score
   defstruct answer: [1, 2, 3, 4], history: []
 
-  def new(answer \\ [1, 2, 3, 4]) do
+  def new(answer \\ random_answer()) do
     %__MODULE__{answer: answer}
+  end
+
+  defp random_answer() do
+    Enum.shuffle(1..8) |> Enum.take(4)
   end
 
   def guess(board, guess) do
